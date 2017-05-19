@@ -4,6 +4,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.androidarchitecture.data.UserDataSource
 import com.androidarchitecture.entity.User
+import com.androidarchitecture.utility.L
+import android.arch.lifecycle.MutableLiveData
+
+
 
 /**
  * Created by binary on 5/19/17.
@@ -11,13 +15,30 @@ import com.androidarchitecture.entity.User
 class UserViewModel : ViewModel() {
 
     lateinit var userDataSource: UserDataSource
-    private var userData:LiveData<User>? = null
+    private var users: MutableLiveData<User>? = null
 
-    fun getUserData(userId: Int) : LiveData<User>? {
-        if (userData == null) {
-            userData = userDataSource.loadUserInfoById(userId)
+    //region UserViewModel
+    fun getUser(userId: Int): LiveData<User>? {
+        if (users == null) {
+            users = MutableLiveData()
+            loadUser(userId)
         }
-        return userData
+        return users
     }
+    //endregion
+
+    //region UtilityAPI
+    private fun loadUser(userId: Int) {
+        userDataSource.loadUserInfoById(userId).observeForever {
+            users?.postValue(it)
+            it?.let { userDataSource.saveUser(it) }
+        }
+    }
+    //endregion
+
+
+
+
+
 
 }

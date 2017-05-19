@@ -8,7 +8,9 @@ import com.androidarchitecture.entity.User
  */
 interface UserLocalAPI {
 
-    fun findByName(first: String): LiveData<User>
+    fun findByName(first: String): User?
 
-    fun findById(uid: Int): LiveData<User>
+    fun findById(uid: Int): User?
+
+    fun saveUser(user: User)
 }

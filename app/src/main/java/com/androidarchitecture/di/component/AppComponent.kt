@@ -6,6 +6,9 @@ import com.androidarchitecture.di.module.AppModule
 import com.androidarchitecture.di.module.DataModule
 import dagger.Component
 import javax.inject.Singleton
+import com.androidarchitecture.core.executor.ThreadExecutor
+
+
 
 /**
  * Created by binary on 5/18/17.
@@ -16,6 +19,7 @@ interface AppComponent {
 
     fun getContext() : Context
 
+    fun threadExecutor(): ThreadExecutor
 
     fun userDataSource(): UserDataSource
 }

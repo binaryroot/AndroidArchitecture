@@ -10,4 +10,6 @@ interface UserDataSource {
 
     fun loadUserInfoById(userId : Int) : LiveData<User>
 
+    fun saveUser(user: User)
+
 }
