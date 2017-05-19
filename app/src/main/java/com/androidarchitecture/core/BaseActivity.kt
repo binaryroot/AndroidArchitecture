@@ -10,6 +10,9 @@ import android.content.DialogInterface
 import android.view.KeyEvent
 import com.androidarchitecture.App
 import com.androidarchitecture.di.component.AppComponent
+import android.R.anim.slide_out_right
+import android.R.anim.slide_in_left
+import android.support.v4.app.Fragment
 
 
 /**
@@ -64,6 +67,47 @@ abstract class BaseActivity : LifecycleActivity(), Handler.Callback, LoadingUiHa
         mUIHandler.sendMessage(message)
     }
     //endregion
+
+    //region FragmentNavigation
+    fun addFragment(containerViewId: Int, fragment: Fragment, addToBackStack: Boolean) {
+        val fragmentTransaction = this.supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(containerViewId, fragment)
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(fragment::class.java.name)
+        }
+        fragmentTransaction.commit()
+    }
+
+    fun addFragment(containerViewId: Int, fragment: Fragment, tag: String, addToBackStack: Boolean) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(containerViewId, fragment, tag)
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(fragment::class.java.name)
+        }
+        fragmentTransaction.commit()
+    }
+
+    fun replaceFragment(containerViewId: Int, fragment: Fragment, addToBackStack: Boolean) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(containerViewId, fragment)
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(fragment::class.java.name)
+        }
+        fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    fun removeFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.remove(fragment)
+        transaction.commit()
+    }
+
+    fun removeFragment(tag: String) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.remove(supportFragmentManager.findFragmentByTag(tag)).commit()
+    }
+    //endregion
+
 
     //region Utility API
     private fun isProgressShowing(): Boolean = null != mProgressDialog && mProgressDialog!!.isShowing

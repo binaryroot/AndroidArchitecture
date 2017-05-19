@@ -2,7 +2,13 @@ package com.androidarchitecture.core
 
 import android.app.Activity
 import android.arch.lifecycle.LifecycleFragment
+import android.content.Context
 import com.androidarchitecture.di.component.AppComponent
+import android.os.Bundle
+import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.view.View
+
 
 /**
  * Created by binary on 5/18/17.
@@ -12,10 +18,10 @@ abstract class BaseFragment : LifecycleFragment(), LoadingUiHandler {
     private var loadingUiHandler:LoadingUiHandler? = null
 
     //region LifecycleFragment
-    override fun onAttach(activity: Activity?) {
-        super.onAttach(activity)
-        if (activity is LoadingUiHandler) {
-            loadingUiHandler = activity
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is LoadingUiHandler) {
+            loadingUiHandler = context
         }
     }
     //endregion
@@ -25,6 +31,21 @@ abstract class BaseFragment : LifecycleFragment(), LoadingUiHandler {
      * Returns instance of {@link AppComponent}.
      */
     fun getAppComponent() : AppComponent? = (activity as BaseActivity).getAppComponent()
+
+    protected abstract fun getContentViewID(): Int
+
+    protected abstract fun initView(savedInstanceState: Bundle?)
+
+    override fun onCreateView(inflater: LayoutInflater?,
+                              container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater!!.inflate(getContentViewID(), container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(savedInstanceState)
+    }
     //endregion
 
     //region LoadingUiHandler
