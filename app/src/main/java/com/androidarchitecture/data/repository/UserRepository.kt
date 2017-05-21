@@ -16,19 +16,19 @@ import javax.inject.Singleton
 @Singleton
 class UserRepository @Inject constructor(userRepositoryFactory: UserRepositoryFactory, var threadExecutor: ThreadExecutor) : UserDataSource {
 
-    private val userNetApi = userRepositoryFactory.createUserNetApi()
-    private val userLocalApi = userRepositoryFactory.createUserLocalAPI()
+    private val userNetAPI = userRepositoryFactory.createUserNetAPI()
+    private val userLocalAPI = userRepositoryFactory.createUserLocalAPI()
 
     //region UserDataSource
     override fun loadUserInfoById(userId: Int): LiveData<User> {
        val result = MutableLiveData<User>()
         threadExecutor.execute {
-            val userLocal = userLocalApi.findById(userId)
+            val userLocal = userLocalAPI.findById(userId)
 
             if(userLocal != null) {
                 result.postValue(userLocal)
             } else {
-                userNetApi.loadUserById(userId).observeForever {
+                userNetAPI.loadUserById(userId).observeForever {
                     result.postValue(it)
                 }
             }
@@ -38,7 +38,7 @@ class UserRepository @Inject constructor(userRepositoryFactory: UserRepositoryFa
     }
 
     override fun saveUser(user: User) {
-        threadExecutor.execute { userLocalApi.saveUser(user) }
+        threadExecutor.execute { userLocalAPI.saveUser(user) }
     }
     //endregion
 }

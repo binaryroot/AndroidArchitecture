@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.androidarchitecture.data.UserDataSource
 import com.androidarchitecture.entity.User
-import com.androidarchitecture.utility.L
 import android.arch.lifecycle.MutableLiveData
 
 
@@ -35,10 +34,4 @@ class UserViewModel : ViewModel() {
         }
     }
     //endregion
-
-
-
-
-
-
 }

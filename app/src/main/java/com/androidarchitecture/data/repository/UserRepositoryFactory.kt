@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Singleton
 class UserRepositoryFactory @Inject constructor(var context:Context, private var appDatabase: AppDatabase) {
 
-    fun createUserNetApi() : UserNetAPI {
+    fun createUserNetAPI() : UserNetAPI {
         return RetrofitUserAPI(context)
     }
 

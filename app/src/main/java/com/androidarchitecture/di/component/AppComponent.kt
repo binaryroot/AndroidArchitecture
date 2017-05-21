@@ -7,7 +7,9 @@ import com.androidarchitecture.di.module.DataModule
 import dagger.Component
 import javax.inject.Singleton
 import com.androidarchitecture.core.executor.ThreadExecutor
+import com.androidarchitecture.data.TaskDataSource
 import com.androidarchitecture.view.activity.LoginActivity
+import com.androidarchitecture.view.fragment.MainFragment
 
 
 /**
@@ -23,5 +25,9 @@ interface AppComponent {
 
     fun userDataSource(): UserDataSource
 
+    fun taskDataSource(): TaskDataSource
+
     fun inject(loginActivity: LoginActivity)
+
+    fun inject(mainFragment: MainFragment)
 }
