@@ -24,6 +24,7 @@ class UserRepository @Inject constructor(userRepositoryFactory: UserRepositoryFa
        val result = MutableLiveData<User>()
         threadExecutor.execute {
             val userLocal = userLocalApi.findById(userId)
+
             if(userLocal != null) {
                 result.postValue(userLocal)
             } else {

@@ -7,7 +7,7 @@ import com.androidarchitecture.di.module.DataModule
 import dagger.Component
 import javax.inject.Singleton
 import com.androidarchitecture.core.executor.ThreadExecutor
-
+import com.androidarchitecture.view.activity.LoginActivity
 
 
 /**
@@ -22,4 +22,6 @@ interface AppComponent {
     fun threadExecutor(): ThreadExecutor
 
     fun userDataSource(): UserDataSource
+
+    fun inject(loginActivity: LoginActivity)
 }
