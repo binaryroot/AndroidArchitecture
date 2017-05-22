@@ -3,20 +3,17 @@ package com.androidarchitecture.core
 import android.arch.lifecycle.LifecycleActivity
 import android.os.Handler
 import android.os.Message
-import android.R.id.message
 import android.app.ProgressDialog
-import android.view.KeyEvent.KEYCODE_BACK
-import android.content.DialogInterface
+import android.content.Context
 import android.view.KeyEvent
 import com.androidarchitecture.App
-import com.androidarchitecture.di.component.AppComponent
-import android.R.anim.slide_out_right
-import android.R.anim.slide_in_left
+import com.androidarchitecture.di.application.AppComponent
 import android.support.v4.app.Fragment
+import com.androidarchitecture.di.HasComponent
 
 
 /**
- * Created by binary on 5/18/17.
+ * Base activity for the whole project.
  */
 abstract class BaseActivity : LifecycleActivity(), Handler.Callback, LoadingUiHandler {
 
@@ -31,7 +28,8 @@ abstract class BaseActivity : LifecycleActivity(), Handler.Callback, LoadingUiHa
     /**
      * Returns instance of {@link AppComponent}.
      */
-    fun getAppComponent() : AppComponent? = (applicationContext as App).appComponent
+    fun getAppComponent() : AppComponent = (applicationContext as HasComponent<*>).getComponent()
+            as AppComponent
     //endregion
 
     //region Callback

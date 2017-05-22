@@ -1,9 +1,8 @@
 package com.androidarchitecture.core
 
-import android.app.Activity
 import android.arch.lifecycle.LifecycleFragment
 import android.content.Context
-import com.androidarchitecture.di.component.AppComponent
+import com.androidarchitecture.di.application.AppComponent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.LayoutInflater

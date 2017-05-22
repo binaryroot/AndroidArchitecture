@@ -1,27 +1,29 @@
-package com.androidarchitecture.di.module
+package com.androidarchitecture.di.application
 
-import android.app.Application
 import android.arch.persistence.room.Room
-
 import android.content.Context
+import com.androidarchitecture.App
+import com.androidarchitecture.core.executor.JobExecutor
+import com.androidarchitecture.core.executor.ThreadExecutor
 import com.androidarchitecture.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-import com.androidarchitecture.core.executor.JobExecutor
-import com.androidarchitecture.core.executor.ThreadExecutor
-
 
 
 /**
- * Created by binary on 5/18/17.
+ * Provides application dependencies.
  */
 @Module
-class AppModule(val app: Application) {
+class AppModule(val app: App) {
 
     @Provides
     @Singleton
-    fun provideContext() : Context = app
+    fun provideApplication(): App = app
+
+    @Provides
+    @Singleton
+    fun provideContext(): Context = app
 
     @Provides
     @Singleton
@@ -33,6 +35,6 @@ class AppModule(val app: Application) {
     @Singleton
     fun providerAppDatabase(): AppDatabase {
         return Room.databaseBuilder(app.applicationContext,
-                AppDatabase::class.java, "database").build();
+                AppDatabase::class.java, "database").build()
     }
 }
