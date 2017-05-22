@@ -9,7 +9,7 @@ import com.androidarchitecture.di.application.AppComponent
  */
 class App : Application(), HasComponent<AppComponent> {
 
-    private var appComponent: AppComponent = AppComponent.Builder.build(this)
+    private var mAppComponent: AppComponent = AppComponent.Builder.build(this)
 
     //region Application
     override fun onCreate() {
@@ -19,7 +19,7 @@ class App : Application(), HasComponent<AppComponent> {
 
     //region HasComponent<AppComponent>
     override fun getComponent(): AppComponent {
-        return appComponent
+        return mAppComponent
     }
     //endregion
 }

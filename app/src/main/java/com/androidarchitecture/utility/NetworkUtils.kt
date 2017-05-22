@@ -6,7 +6,6 @@ import javax.inject.Singleton
 
 import okhttp3.Response
 
-@Singleton
 class NetworkUtils {
 
     fun isNotAuthorized(response: Response): Boolean {
