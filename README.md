@@ -36,3 +36,6 @@ It's based on the MVC sample, splitting the application in four layers:
 ### Maintainability
 
 ViewModel concept makes application more flexible for support 
+
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--CleanArchitecture-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/5775)
