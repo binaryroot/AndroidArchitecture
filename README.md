@@ -1,6 +1,6 @@
 # Android Architecture Kotlin + Dagger2 + Room + LiveData + Retrofit
 
-Project contributors: [Nazar Ivanchuk](https://goo.gl/1185SB)
+Project contributors: [Nazar Ivanchuk](https://goo.gl/1185SB) & [Roman Havran](https://goo.gl/W0NQfP)
 
 ### Summary
 This sample stands on the principles of [Android Architecture](https://goo.gl/p917KL).
