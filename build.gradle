@@ -1,4 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'build_configuration/ci.gradle'
+apply from: 'build_configuration/dependencies.gradle'
 
 buildscript {
     ext.kotlin_version = '1.1.2-4'
@@ -18,6 +20,14 @@ allprojects {
     repositories {
         jcenter()
         maven { url 'https://maven.google.com' }
+    }
+
+    ext {
+        androidApplicationId = 'com.androidarchitecture'
+        androidVersionCode = 1
+        androidVersionName = "1.0"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = 'com.androidarchitecture.test'
     }
 }
 
