@@ -61,14 +61,14 @@ android {
         dev {
             dimension = "full"
             buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
-            buildConfigField 'String', 'API_CONSUMER_KEY', '"SCRTClientId"'
+            buildConfigField 'String', 'API_CONSUMER_KEY', '"ClientId"'
             versionName = "dev " + android.defaultConfig.versionName
         }
 
         prod {
             dimension = "full"
             buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
-            buildConfigField 'String', 'API_CONSUMER_KEY', '"SCRTClientId"'
+            buildConfigField 'String', 'API_CONSUMER_KEY', '"ClientId"'
             versionName = android.defaultConfig.versionName
         }
     }
@@ -77,7 +77,6 @@ android {
 kapt {
     generateStubs = true
 }
-
 
 dependencies {
     def dependencies = rootProject.ext.dependencies
