@@ -1,4 +1,4 @@
-package com.androidarchitecture.di
+package com.androidarchitecture.di.activity
 
 import javax.inject.Qualifier
 
@@ -9,4 +9,4 @@ import javax.inject.Qualifier
  */
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
-annotation class PerActivity
+annotation class PerActivityQualifier

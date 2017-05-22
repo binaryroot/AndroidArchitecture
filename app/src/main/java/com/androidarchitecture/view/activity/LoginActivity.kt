@@ -26,7 +26,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        getAppComponent()?.inject(this@LoginActivity)
+        getAppComponent().inject(this@LoginActivity)
         mEmailSignInButton = findViewById(R.id.email_sign_in_button) as Button
 
         val userDataModule = ViewModelProviders.of(this@LoginActivity).get(UserViewModel::class.java)

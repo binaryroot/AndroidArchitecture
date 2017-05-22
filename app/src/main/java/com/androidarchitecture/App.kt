@@ -1,30 +1,25 @@
 package com.androidarchitecture
 
 import android.app.Application
-import com.androidarchitecture.di.component.AppComponent
-import com.androidarchitecture.di.component.DaggerAppComponent
-import com.androidarchitecture.di.module.AppModule
+import com.androidarchitecture.di.HasComponent
+import com.androidarchitecture.di.application.AppComponent
 
 /**
- * Created by binary on 5/19/17.
+ * Main application instance.
  */
-class App: Application() {
+class App : Application(), HasComponent<AppComponent> {
 
-    var appComponent: AppComponent? = null
+    private var appComponent: AppComponent = AppComponent.Builder.build(this)
 
+    //region Application
     override fun onCreate() {
         super.onCreate()
-        initDagger()
     }
+    //endregion
 
-    fun appComponent(): AppComponent? = appComponent
-
-    //region Utility API
-    fun initDagger() {
-        appComponent = DaggerAppComponent
-                .builder()
-                .appModule( AppModule(this))
-                .build();
+    //region HasComponent<AppComponent>
+    override fun getComponent(): AppComponent {
+        return appComponent
     }
     //endregion
 }

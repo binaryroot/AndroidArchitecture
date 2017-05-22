@@ -13,7 +13,7 @@ object L {
 
      * @param msg message value
      */
-    fun e(msg: String) {
+    fun e(msg: String?) {
         if (BuildConfig.DEBUG) {
             val t = Throwable()
             val elements = t.stackTrace
@@ -30,7 +30,7 @@ object L {
 
      * @param msg message value
      */
-    fun e(msg: String, error: Throwable) {
+    fun e(msg: String?, error: Throwable) {
         if (BuildConfig.DEBUG) {
             val t = Throwable()
             val elements = t.stackTrace

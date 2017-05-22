@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+repositories {
+    mavenCentral()
+}
+
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
@@ -45,12 +49,34 @@ android {
     sourceSets {
         main.java.srcDirs += 'build/generated-src/kotlin'
     }
+
+    // Specifies the flavor dimensions you want to use. The order in which you
+    // list each dimension determines its priority, from highest to lowest,
+    // when Gradle merges variant sources and configurations. You must assign
+    // each product flavor you configure to one of the flavor dimensions.
+    flavorDimensions "full"
+
+    productFlavors {
+
+        dev {
+            dimension = "full"
+            buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
+            buildConfigField 'String', 'API_CONSUMER_KEY', '"ClientId"'
+            versionName = "dev " + android.defaultConfig.versionName
+        }
+
+        prod {
+            dimension = "full"
+            buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
+            buildConfigField 'String', 'API_CONSUMER_KEY', '"ClientId"'
+            versionName = android.defaultConfig.versionName
+        }
+    }
 }
 
 kapt {
     generateStubs = true
 }
-
 
 dependencies {
     def dependencies = rootProject.ext.dependencies
@@ -74,15 +100,16 @@ dependencies {
     provided dependencies.glassfish
     provided dependencies.jsr250
 
+    compile dependencies.securePref
     compile dependencies.appcompat
     compile dependencies.design
     compile dependencies.constraintLayout
 
     compile dependencies.retrofit
+    compile dependencies.loggingInterceptor
     compile dependencies.converterGson
     compile dependencies.gson
+
     testCompile testDependencies.junit
 }
-repositories {
-    mavenCentral()
-}
+
