@@ -1,24 +1,23 @@
 package com.androidarchitecture.data.repository
 
 import android.content.Context
+import com.androidarchitecture.data.auth.AuthorizationService
 import com.androidarchitecture.data.local.AppDatabase
 import com.androidarchitecture.data.local.user.UserLocalAPI
 import com.androidarchitecture.data.net.user.RetrofitUserAPI
 import com.androidarchitecture.data.net.user.UserNetAPI
-import javax.inject.Inject
-import javax.inject.Singleton
+import retrofit2.Retrofit
 
-/**
- * Created by binary on 5/18/17.
- */
-@Singleton
-class UserRepositoryFactory @Inject constructor(var context:Context, private var appDatabase: AppDatabase) {
+class UserRepositoryFactory constructor(private var mContext: Context,
+                                        private var mRetrofit: Retrofit,
+                                        private var mAuthorizationService: AuthorizationService,
+                                        private var mAppDatabase: AppDatabase) {
 
-    fun createUserNetAPI() : UserNetAPI {
-        return RetrofitUserAPI(context)
+    fun createUserNetAPI(): UserNetAPI {
+        return RetrofitUserAPI(mContext, mAuthorizationService, mRetrofit)
     }
 
     fun createUserLocalAPI(): UserLocalAPI {
-        return appDatabase.userDao()
+        return mAppDatabase.userDao()
     }
 }

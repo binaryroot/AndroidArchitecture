@@ -46,23 +46,23 @@ abstract class BaseActivity : LifecycleActivity(), Handler.Callback, LoadingUiHa
 
     //region LoadingUiHandler
     override fun showLoadingDialog(message: String) {
-        val message = Message()
-        message.what = MSG_SHOW_LOADING_DIALOG
-        message.obj = message
-        mUIHandler.sendMessage(message)
+        val showMessage = Message()
+        showMessage.what = MSG_SHOW_LOADING_DIALOG
+        showMessage.obj = showMessage
+        mUIHandler.sendMessage(showMessage)
     }
 
     override fun updateLoadingDialog(message: String) {
-        val message = Message()
-        message.what = MSG_UPDATE_LOADING_MESSAGE
-        message.obj = message
-        mUIHandler.sendMessage(message)
+        val updateMessage = Message()
+        updateMessage.what = MSG_UPDATE_LOADING_MESSAGE
+        updateMessage.obj = updateMessage
+        mUIHandler.sendMessage(updateMessage)
     }
 
     override fun hideLoadingDialog() {
-        val message = Message()
-        message.what = MSG_HIDE_LOADING_DIALOG
-        mUIHandler.sendMessage(message)
+        val hideMessage = Message()
+        hideMessage.what = MSG_HIDE_LOADING_DIALOG
+        mUIHandler.sendMessage(hideMessage)
     }
     //endregion
 

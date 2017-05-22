@@ -1,6 +1,6 @@
 package com.androidarchitecture.di
 
 /**
- * Base component to track if instance has components to depend on.
+ * Base component for tracking if an instance has components to depend on.
  */
-public interface BaseComponent
+interface BaseComponent

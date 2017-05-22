@@ -3,6 +3,6 @@ package com.androidarchitecture.di
 /**
  * Interface representing a contract for clients that contains a component for dependency injection.
  */
-public interface HasComponent<C : BaseComponent> {
+interface HasComponent<C : BaseComponent> {
     fun getComponent(): C
 }

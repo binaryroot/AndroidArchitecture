@@ -22,6 +22,29 @@ android {
     sourceSets {
         main.java.srcDirs += 'build/generated-src/kotlin'
     }
+
+    // Specifies the flavor dimensions you want to use. The order in which you
+    // list each dimension determines its priority, from highest to lowest,
+    // when Gradle merges variant sources and configurations. You must assign
+    // each product flavor you configure to one of the flavor dimensions.
+    flavorDimensions "full"
+
+    productFlavors {
+
+        dev {
+            dimension = "full"
+            buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
+            buildConfigField 'String', 'API_CONSUMER_KEY', '"SCRTClientId"'
+            versionName = "dev " + android.defaultConfig.versionName
+        }
+
+        prod {
+            dimension = "full"
+            buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
+            buildConfigField 'String', 'API_CONSUMER_KEY', '"SCRTClientId"'
+            versionName = android.defaultConfig.versionName
+        }
+    }
 }
 
 kapt {
@@ -36,7 +59,8 @@ dependencies {
     })
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
+    compile "com.squareup.okhttp3:logging-interceptor:3.6.0"
+    compile "com.scottyab:secure-preferences-lib:0.1.4"
     compile 'android.arch.lifecycle:runtime:1.0.0-alpha1'
     compile 'android.arch.lifecycle:extensions:1.0.0-alpha1'
     compile 'android.arch.persistence.room:runtime:1.0.0-alpha1'
