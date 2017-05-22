@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+repositories {
+    mavenCentral()
+}
+
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
@@ -97,15 +101,16 @@ dependencies {
     provided dependencies.glassfish
     provided dependencies.jsr250
 
+    compile dependencies.securePref
     compile dependencies.appcompat
     compile dependencies.design
     compile dependencies.constraintLayout
 
     compile dependencies.retrofit
+    compile dependencies.loggingInterceptor
     compile dependencies.converterGson
     compile dependencies.gson
+
     testCompile testDependencies.junit
 }
-repositories {
-    mavenCentral()
-}
+
