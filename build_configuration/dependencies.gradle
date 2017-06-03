@@ -32,6 +32,8 @@ ext {
     jUnitVersion = '4.12'
     assertJVersion = '1.7.1'
     mockitoVersion = '1.9.5'
+    hamcrestVersion = '1.3'
+    powerMockito = '1.6.2'
     dexmakerVersion = '1.0'
     espressoVersion = '2.0'
     testingSupportLibVersion = '0.1'
@@ -73,7 +75,12 @@ ext {
 
             junit:              "junit:junit:${jUnitVersion}",
             assertj:            "org.assertj:assertj-core:${assertJVersion}",
-            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            mockito:            "org.mockito:mockito-all:${mockitoVersion}",
+
+            hamcrest:           "org.hamcrest:hamcrest-all:${hamcrestVersion}",
+            powermockModule:    "org.powermock:powermock-module-junit4:${powerMockito}",
+            powermockAPI:       "org.powermock:powermock-api-mockito:${powerMockito}",
+
             robolectric:        "org.robolectric:robolectric:${robolectricVersion}",
     ]
 

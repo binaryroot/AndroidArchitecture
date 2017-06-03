@@ -22,7 +22,7 @@ class MainFragment : BaseFragment() {
 
     private lateinit var taskViewModel: TaskViewModel
     private lateinit var taskAdapter: TaskAdapter
-    private var taskList  = mutableListOf<Task>()
+    private val taskList = mutableListOf<Task>()
 
     companion object {
         fun newInstance(): Fragment = MainFragment()
@@ -55,13 +55,14 @@ class MainFragment : BaseFragment() {
     }
 
     private fun showAddDialog() {
-        val builder = AlertDialog.Builder(this@MainFragment.context)
-        builder.setTitle(getString(R.string.add_to_todo_list))
-        val input = EditText(this@MainFragment.context)
-        builder.setView(input)
-        builder.setPositiveButton("OK", { d, _ -> taskViewModel.addTask(input.text.toString()); d.cancel() })
-        builder.setNegativeButton("Cancel", { d, _ -> d.cancel() })
-        builder.show()
+        AlertDialog.Builder(this@MainFragment.context).apply {
+            setTitle(getString(R.string.add_to_todo_list))
+            val input = EditText(this@MainFragment.context)
+            setView(input)
+            setPositiveButton("OK", { d, _ -> taskViewModel.addTask(input.text.toString()); d.cancel() })
+            setNegativeButton("Cancel", { d, _ -> d.cancel() })
+            show()
+        }
     }
     //endregion
 }

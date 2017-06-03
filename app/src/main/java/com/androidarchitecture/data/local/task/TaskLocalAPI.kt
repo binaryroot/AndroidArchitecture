@@ -12,4 +12,6 @@ interface TaskLocalAPI {
 
     fun saveTask(task: Task)
 
+    fun removeTask(task: Task)
+
 }
