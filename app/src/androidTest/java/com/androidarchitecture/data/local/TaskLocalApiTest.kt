@@ -46,7 +46,7 @@ class TaskLocalApiTest {
 
     @Test
     fun testRemove() {
-        var task = Task("test_task")
+        val task = Task("test_task")
         task.uid = 1
         taskLocalAPI.saveTask(task)
         taskLocalAPI.removeTask(task)
