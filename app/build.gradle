@@ -48,6 +48,7 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'build/generated-src/kotlin'
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
     // Specifies the flavor dimensions you want to use. The order in which you
@@ -70,6 +71,21 @@ android {
             buildConfigField 'String', 'API_ENDPOINT', '"https://kronosoft.herokuapp.com/api/v1/"'
             buildConfigField 'String', 'API_CONSUMER_KEY', '"ClientId"'
             versionName = android.defaultConfig.versionName
+        }
+    }
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            jvmArgs '-XX:MaxPermSize=256m'
         }
     }
 }
@@ -111,5 +127,11 @@ dependencies {
     compile dependencies.gson
 
     testCompile testDependencies.junit
+    testCompile testDependencies.assertj
+    testCompile testDependencies.mockito
+    testCompile testDependencies.hamcrest
+    testCompile testDependencies.powermockModule
+    testCompile testDependencies.powermockAPI
+
 }
 
