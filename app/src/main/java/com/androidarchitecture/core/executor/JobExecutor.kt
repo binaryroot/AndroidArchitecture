@@ -22,25 +22,13 @@ class JobExecutor @Inject constructor() : ThreadExecutor {
 
     init {
         val workQueue = LinkedBlockingQueue<Runnable>()
-        val threadFactory = JobThreadFactory()
-        this.mThreadPoolExecutor = ThreadPoolExecutor(INITIAL_POOL_SIZE, MAX_POOL_SIZE,
+        val threadFactory = com.androidarchitecture.core.executor.ThreadFactory(THREAD_NAME_)
+        mThreadPoolExecutor = ThreadPoolExecutor(INITIAL_POOL_SIZE, MAX_POOL_SIZE,
                 KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT, workQueue, threadFactory)
     }
 
     override fun execute(runnable: Runnable) {
-        this.mThreadPoolExecutor.execute(runnable)
-    }
-
-    internal class JobThreadFactory : ThreadFactory {
-        private var counter = 0
-
-       override fun newThread(runnable: Runnable): Thread {
-            return Thread(runnable, THREAD_NAME_ + counter++)
-        }
-
-        companion object {
-            private val THREAD_NAME_ = "android_"
-        }
+        mThreadPoolExecutor.execute(runnable)
     }
 
     companion object {
@@ -53,5 +41,7 @@ class JobExecutor @Inject constructor() : ThreadExecutor {
 
         // Sets the Time Unit to seconds
         private val KEEP_ALIVE_TIME_UNIT = TimeUnit.SECONDS
+
+        private val THREAD_NAME_ = "android_"
     }
 }

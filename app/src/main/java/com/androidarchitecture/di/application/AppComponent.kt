@@ -26,10 +26,6 @@ interface AppComponent : BaseComponent {
 
     fun inject(app: App)
 
-    fun inject(loginActivity: LoginActivity)
-
-    fun inject(mainFragment: MainFragment)
-
     fun sharedPrefs(): SharedPreferences
 
     fun sharedSecurePrefs(): SharedPreferences

@@ -14,13 +14,15 @@ import android.view.View
  */
 abstract class BaseFragment : LifecycleFragment(), LoadingUiHandler {
 
-    private var loadingUiHandler:LoadingUiHandler? = null
+    private lateinit var loadingUiHandler:LoadingUiHandler
 
     //region LifecycleFragment
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+
         if (context is LoadingUiHandler) {
             loadingUiHandler = context
+
         }
     }
     //endregion
@@ -29,7 +31,6 @@ abstract class BaseFragment : LifecycleFragment(), LoadingUiHandler {
     /**
      * Returns instance of {@link AppComponent}.
      */
-    fun getAppComponent() : AppComponent? = (activity as BaseActivity).getAppComponent()
 
     protected abstract fun getContentViewID(): Int
 

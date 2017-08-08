@@ -7,6 +7,8 @@ import com.androidarchitecture.App
 import com.androidarchitecture.core.executor.JobExecutor
 import com.androidarchitecture.core.executor.ThreadExecutor
 import com.androidarchitecture.data.local.AppDatabase
+import com.androidarchitecture.di.application.qualifier.AppContextQualifier
+import com.androidarchitecture.di.application.qualifier.SecurePrefQualifier
 import com.securepreferences.SecurePreferences
 import dagger.Module
 import dagger.Provides
@@ -21,6 +23,7 @@ class AppModule(val app: App) {
 
     @Provides
     @Singleton
+    @AppContextQualifier
     fun provideApplication(): App = app
 
     @Provides

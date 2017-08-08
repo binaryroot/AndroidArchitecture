@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import com.androidarchitecture.data.UserDataSource
 import com.androidarchitecture.entity.User
 import android.arch.lifecycle.MutableLiveData
-
+import javax.inject.Inject
 
 
 /**
@@ -13,6 +13,7 @@ import android.arch.lifecycle.MutableLiveData
  */
 class UserViewModel : ViewModel() {
 
+    @Inject
     lateinit var userDataSource: UserDataSource
     private var users: MutableLiveData<User>? = null
 

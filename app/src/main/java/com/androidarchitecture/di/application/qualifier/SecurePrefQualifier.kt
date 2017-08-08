@@ -1,4 +1,4 @@
-package com.androidarchitecture.di.application
+package com.androidarchitecture.di.application.qualifier
 
 import javax.inject.Qualifier
 

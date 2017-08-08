@@ -10,6 +10,7 @@ import com.androidarchitecture.App
 import com.androidarchitecture.di.application.AppComponent
 import android.support.v4.app.Fragment
 import com.androidarchitecture.di.HasComponent
+import com.androidarchitecture.utility.toast
 
 
 /**
@@ -21,14 +22,14 @@ abstract class BaseActivity : LifecycleActivity(), Handler.Callback, LoadingUiHa
     private val MSG_UPDATE_LOADING_MESSAGE = 0x1001   //4097 in dec
     private val MSG_HIDE_LOADING_DIALOG = 0x1002      //4098 in dec
 
-    private val mUIHandler = Handler(this@BaseActivity)
+    private val mUIHandler = Handler(this)
     private var mProgressDialog: ProgressDialog? = null
 
     //region BaseActivity
     /**
      * Returns instance of {@link AppComponent}.
      */
-    fun getAppComponent() : AppComponent = (applicationContext as HasComponent<*>).getComponent()
+    protected fun getAppComponent() : AppComponent = (applicationContext as HasComponent<*>).getComponent()
             as AppComponent
     //endregion
 

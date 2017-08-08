@@ -1,13 +1,9 @@
 package com.androidarchitecture.data.auth
 
 import android.content.SharedPreferences
-import com.androidarchitecture.di.application.SecurePrefQualifier
 
 import com.androidarchitecture.entity.auth.Token
 import com.google.gson.GsonBuilder
-
-import javax.inject.Inject
-import javax.inject.Singleton
 
 class TokenStore constructor( private val mSecureSharedPreferences: SharedPreferences) {
 
